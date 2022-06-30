@@ -14,7 +14,27 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '*/**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: UniversalPackages@0
+  inputs:
+    command: 'publish'
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    feedsToUsePublish: 'internal'
+    vstsFeedPublish: 'SpiceApps'
+    vstsFeedPackagePublish: 'weightapp-artifact'
+    versionOption: 'patch'
+    packagePublishDescription: 'publish to Azure Artifacts'
