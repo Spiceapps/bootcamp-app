@@ -34,3 +34,10 @@ steps:
     vstsFeedPackagePublish: 'weightapp-artifact'
     versionOption: 'patch'
     packagePublishDescription: 'publish to Azure Artifacts'
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'current'
+    artifactName: 'weightapp-artifact'
+    itemPattern: '**/*'
+    targetPath: '$(Build.SourcesDirectory)/weightapp'
