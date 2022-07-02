@@ -38,6 +38,6 @@ steps:
 - task: DownloadPipelineArtifact@2
   inputs:
     buildType: 'current'
-    artifactName: 'weightapp-artifact'
+    artifactName:
     itemPattern: '**/*'
     targetPath: '$(Build.SourcesDirectory)/weightapp'
