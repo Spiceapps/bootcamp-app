@@ -40,4 +40,4 @@ steps:
     buildType: 'current'
     artifactName:
     itemPattern: '**/*'
-    targetPath: '$(Build.SourcesDirectory)/weightapp'
+    targetPath: '$(Build.SourcesDirectory)/weightapp2'
